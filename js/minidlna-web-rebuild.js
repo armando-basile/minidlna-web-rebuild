@@ -17,15 +17,30 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function loadStatus() {
     fetch('actions.php?action=getStatus')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('audioFiles').textContent = data.data.audio;
-                document.getElementById('videoFiles').textContent = data.data.video;
-                document.getElementById('imageFiles').textContent = data.data.images;
-            } else {
-                console.error('Error loading status:', data.error);
-                showResult('Error: ' + data.error, false);
+        .then(response => {
+            // Log della risposta grezza
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers.get('content-type'));
+            return response.text(); // Cambia temporaneamente in text per vedere cosa arriva
+        })
+        .then(text => {
+            console.log('Raw response:', text); // Vedi cosa arriva davvero
+            
+            // Prova a parsare il JSON
+            try {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    document.getElementById('audioFiles').textContent = data.data.audio;
+                    document.getElementById('videoFiles').textContent = data.data.video;
+                    document.getElementById('imageFiles').textContent = data.data.images;
+                } else {
+                    console.error('Error loading status:', data.error);
+                    showResult('Error: ' + data.error, false);
+                }
+            } catch (e) {
+                console.error('JSON parse error:', e);
+                console.error('Response was:', text);
+                showResult('Invalid response from server', false);
             }
         })
         .catch(error => {
