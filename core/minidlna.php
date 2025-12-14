@@ -11,7 +11,7 @@ class minidlna {
      */
     public static function RebuildMiniDLNA() {
         // Command to rebuild
-        $command = 'sudo /usr/sbin/service minidlna force-reload';
+        $command = 'sudo /usr/bin/systemctl restart minidlna.service';
         
         // fix command
         $escapedCommand = escapeshellcmd($command);

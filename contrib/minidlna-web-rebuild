@@ -1,1 +1,1 @@
-www-data ALL=(ALL) NOPASSWD: /usr/sbin/service minidlna force-reload
+www-data ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart minidlna.service
