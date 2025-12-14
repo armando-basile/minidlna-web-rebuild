@@ -81,6 +81,7 @@ function rebuildContent() {
             showResult(data.data.message, true);
             // Force immediate status reload after rebuild
             setTimeout(loadStatus, 2000);
+            
         } else {
             showResult('Error: ' + data.error, false);
         }
@@ -122,3 +123,17 @@ document.addEventListener('visibilitychange', function() {
         loadStatus(); // Load immediately when page becomes visible
     }
 });
+
+/**
+ * Clear result textarea
+ */
+function clearResult() {
+    const textarea = document.getElementById('resultArea');
+    
+    if (!textarea) {
+        return;
+    }
+    
+    textarea.value = '';
+    textarea.classList.remove('border-success', 'border-danger');
+}
