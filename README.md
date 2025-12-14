@@ -17,9 +17,12 @@ Web application to manage MiniDLNA database rebuild and update contents
   ```
 - Copy _contrib/minidlna-web-rebuild.conf_ to _/etc/nginx/conf.d/minidlna-web-rebuild.conf_
   ```
-  # cp contrib/minidlna-web-rebuild.conf /etc/nginx/conf.d/minidlna-web-rebuild.conf
+  # cp /var/www/webapps/minidlna-web-rebuild/contrib/minidlna-web-rebuild.conf /etc/nginx/conf.d/minidlna-web-rebuild.conf
   ```
 - Set web app permissions
   ```
   # bash /var/www/webapps/minidlna-web-rebuild/contrib/set_permissions.sh
   ```
+
+# Usage
+Open a web browser and navigate to http://{mediacenter ip}:8201/
