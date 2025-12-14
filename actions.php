@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 #ini_set('log_errors', 1);
 
+include_once "conf/config.php";
 include_once "core/minidlna.php";
 
 class Actions {
