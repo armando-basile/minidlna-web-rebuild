@@ -6,12 +6,46 @@ $login = file_get_contents("template/login.html");
 $rebuild = file_get_contents("template/rebuild.html");
 $page = $rebuild;
 
+/**
+ * Check for user password
+ *
+ * @return void
+ */
+function VerifyLogin() {
+    
+    $correct_password = 'minidlna';
+    $entered_password = $_POST['password'];
+    
+    if ($entered_password === $correct_password) {
+        // Right password, user logged
+        $_SESSION["authenticated"] = true;
+    } else {
+        // Wrong password
+        $_SESSION['error'] = 'Wrong password !!';
+    }
+}
+
 // reopen session
 if(!isset($_SESSION)) { session_start(); }
 
+// Check for password sent
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
+    VerifyLogin();
+}
+
 // check for user log in
-if ((!isset($_SESSION["username"])) || (empty($_SESSION["username"]))) {
+if ((!isset($_SESSION["authenticated"])) || ($_SESSION["authenticated"] !== true)) {
     $page = $login; 
+
+    // Update error message
+    $error_message = '';
+    if (isset($_SESSION['error'])) {
+        $error_message = '<div class="alert alert-danger">' . htmlspecialchars($_SESSION['error']) . '</div>';
+        unset($_SESSION['error']);
+    }
+    
+    // Sostituisci placeholder nel login template
+    $page = str_replace("<!-- ERROR-MESSAGE -->", $error_message, $page);
 }
 
 # Page content
