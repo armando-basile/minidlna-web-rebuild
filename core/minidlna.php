@@ -39,7 +39,7 @@ class minidlna {
         $content = @file_get_contents($MiniDLNA_URL);
         
         if ($content === false) {
-            throw new Exception("MiniDLNA status not accessible. Check for MiniDLNA was started and configured port was opened.");
+            throw new Exception("MiniDLNA status not accessible on $MiniDLNA_URL . Check for MiniDLNA was started and configured port was opened.");
         }
         
         $status = new minidlna_status();
