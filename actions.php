@@ -44,9 +44,9 @@ class Actions {
             $status = minidlna::GetMiniDLNAStatus();
             
             self::sendSuccess([
-                'audio' => isset($status->AUDIO[1]) ? (int)$status->AUDIO[1] : 0,
-                'video' => isset($status->VIDEO[1]) ? (int)$status->VIDEO[1] : 0,
-                'images' => isset($status->IMAGES[1]) ? (int)$status->IMAGES[1] : 0
+                'audio' => $status->AUDIO,
+                'video' => $status->VIDEO,
+                'images' => $status->IMAGES
             ]);
             
         } catch (Exception $e) {
