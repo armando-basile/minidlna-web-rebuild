@@ -14,6 +14,9 @@ Web application to manage MiniDLNA database rebuild and update contents
   ```
   # cd /var/www/webapps
   # git clone https://github.com/armando-basile/minidlna-web-rebuild.git minidlna-web-rebuild
+  # cd /var/www/webapps/minidlna-web-rebuild
+  # git config --global --add safe.directory /var/www/webapps/minidlna-web-rebuild
+  # git config core.fileMode false
   ```
 - Copy _contrib/minidlna-web-rebuild.conf_ to _/etc/nginx/conf.d/minidlna-web-rebuild.conf_
   ```

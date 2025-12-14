@@ -1,9 +1,9 @@
 <?php
 
 //get page template
-$htmlpage = file_get_contents("templates/main.html");
-$login = file_get_contents("templates/login.html");
-$rebuild = file_get_contents("templates/rebuild.html");
+$htmlpage = file_get_contents("template/main.html");
+$login = file_get_contents("template/login.html");
+$rebuild = file_get_contents("template/rebuild.html");
 $page = $rebuild;
 
 // reopen session
