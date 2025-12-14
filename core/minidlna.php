@@ -47,10 +47,19 @@ class minidlna {
         
         $status = new minidlna_status();
 
-        // Parsing 
-        preg_match('/Audio files: (\d+)/', $content, $status->AUDIO);
-        preg_match('/Video files: (\d+)/', $content, $status->VIDEO);
-        preg_match('/Image files: (\d+)/', $content, $status->IMAGES);
+        // Parsing - devi usare variabili temporanee
+        $audioMatches = [];
+        $videoMatches = [];
+        $imageMatches = [];
+    
+        preg_match('/Audio files: (\d+)/', $content, $audioMatches);
+        preg_match('/Video files: (\d+)/', $content, $videoMatches);
+        preg_match('/Image files: (\d+)/', $content, $imageMatches);
+        
+        // Assegna i valori estratti
+        $status->AUDIO = isset($audioMatches[1]) ? (int)$audioMatches[1] : 0;
+        $status->VIDEO = isset($videoMatches[1]) ? (int)$videoMatches[1] : 0;
+        $status->IMAGES = isset($imageMatches[1]) ? (int)$imageMatches[1] : 0;
                 
         return $status;
     }
