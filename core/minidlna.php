@@ -36,10 +36,21 @@ class minidlna {
      */
     public static function GetMiniDLNAStatus() {
         global $MiniDLNA_URL;
-        $content = @file_get_contents($MiniDLNA_URL);
         
-        if ($content === false) {
-            throw new Exception("MiniDLNA status not accessible on $MiniDLNA_URL . Check for MiniDLNA was started and configured port was opened.");
+        // cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $MiniDLNA_URL);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        
+        $content = curl_exec($ch);
+        $error = curl_error($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        
+        if ($content === false || $httpCode !== 200) {
+            throw new Exception("MiniDLNA status not accessible on $MiniDLNA_URL. HTTP Code: $httpCode, Error: $error");
         }
         
         $status = new minidlna_status();
