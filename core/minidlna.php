@@ -4,9 +4,6 @@ include_once "minidlna_status.php";
 
 class minidlna {
 
-    // constant
-    private static String $StatusUrl = 'http://localhost:8200';
-
     /**
      * Perform database rebuild and update contents
      *
@@ -38,8 +35,8 @@ class minidlna {
      * @return minidlna_status
      */
     public static function GetMiniDLNAStatus() {
-        
-        $content = @file_get_contents(self::$StatusUrl);
+        global $MiniDLNA_URL;
+        $content = @file_get_contents($MiniDLNA_URL);
         
         if ($content === false) {
             throw new Exception("MiniDLNA status not accessible. Check for MiniDLNA was started and configured port was opened.");

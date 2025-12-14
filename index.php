@@ -1,7 +1,6 @@
 <?php
 
-define("APP_TITLE", "MiniDLNA Web Rebuild");
-define("VERSION", "0.1.0");
+include_once "conf/config.php";
 
 //get page template
 $htmlpage = file_get_contents("template/main.html");
@@ -15,8 +14,9 @@ $page = $rebuild;
  * @return void
  */
 function VerifyLogin() {
-    
-    $correct_password = 'minidlna';
+    global $Password;
+
+    $correct_password = $Password;
     $entered_password = $_POST['password'];
     
     if ($entered_password === $correct_password) {
