@@ -49,9 +49,9 @@ class minidlna {
         $videoMatches = [];
         $imageMatches = [];
     
-        preg_match('/Audio files: (\d+)/', $content, $audioMatches);
-        preg_match('/Video files: (\d+)/', $content, $videoMatches);
-        preg_match('/Image files: (\d+)/', $content, $imageMatches);
+        preg_match('/<td>Audio files<\/td><td>(\d+)<\/td>/', $content, $audioMatches);
+        preg_match('/<td>Video files<\/td><td>(\d+)<\/td>/', $content, $videoMatches);
+        preg_match('/<td>Image files<\/td><td>(\d+)<\/td>/', $content, $imageMatches);
         
         // Assegna i valori estratti
         $status->AUDIO = isset($audioMatches[1]) ? (int)$audioMatches[1] : 0;
