@@ -44,23 +44,18 @@ class minidlna {
         
         $status = new minidlna_status();
 
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($content);
-        libxml_clear_errors();
+        $audioMatches = [];
+        $videoMatches = [];
+        $imageMatches = [];
+
+        $audioResult = preg_match('/<td>Audio files<\/td>\s*<td>(\d+)<\/td>/', $content, $audioMatches);
+        $videoResult = preg_match('/<td>Video files<\/td>\s*<td>(\d+)<\/td>/', $content, $videoMatches);
+        $imageResult = preg_match('/<td>Image files<\/td>\s*<td>(\d+)<\/td>/', $content, $imageMatches);
+
+        $status->AUDIO = isset($audioMatches[1]) ? (int)$audioMatches[1] : 0;
+        $status->VIDEO = isset($videoMatches[1]) ? (int)$videoMatches[1] : 0;
+        $status->IMAGES = isset($imageMatches[1]) ? (int)$imageMatches[1] : 0;
         
-        $xpath = new DOMXPath($dom);
-        
-        // Usa XPath per estrarre direttamente i valori
-        $audioNodes = $xpath->query("//table[1]//tr[td[text()='Audio files']]/td[2]");
-        $videoNodes = $xpath->query("//table[1]//tr[td[text()='Video files']]/td[2]");
-        $imageNodes = $xpath->query("//table[1]//tr[td[text()='Image files']]/td[2]");
-        
-        // Estrai i valori
-        $status->AUDIO = ($audioNodes->length > 0) ? (int)trim($audioNodes->item(0)->textContent) : 0;
-        $status->VIDEO = ($videoNodes->length > 0) ? (int)trim($videoNodes->item(0)->textContent) : 0;
-        $status->IMAGES = ($imageNodes->length > 0) ? (int)trim($imageNodes->item(0)->textContent) : 0;
-                
         return $status;
     }
 
