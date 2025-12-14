@@ -27,5 +27,11 @@ Web application to manage MiniDLNA database rebuild and update contents
   # bash /var/www/webapps/minidlna-web-rebuild/contrib/set_permissions.sh
   ```
 
+- If nginx return permission error, set selinux
+  ```
+  # semanage port -a -t http_port_t -p tcp 8201
+  ```
+
+
 # Usage
 Open a web browser and navigate to http://{mediacenter ip}:8201/

@@ -1,0 +1,54 @@
+<style>
+    /* Rotating animation for refresh icon */
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .rotating {
+        animation: rotate 1s linear infinite;
+        display: inline-block;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <div class="row text-center g-3 ">
+        <div class="col-12 col-md-4">
+            <div class="h2 mb-0">
+                Audio <span id="audioFiles" class="badge rounded-pill text-bg-success">0</span>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="h2 mb-0">
+                Video <span id="videoFiles" class="badge rounded-pill text-bg-success">50</span>
+            </div>
+        </div>
+        
+        <div class="col-12 col-md-4">
+            <div class="h2 mb-0">
+                Images <span id="imageFiles" class="badge rounded-pill text-bg-success">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 64px;"></div>
+
+    <div class="row text-center g-2 align-items-center">
+
+        <div class="col-12 col-md-4">
+            <button type="button" class="btn btn-primary btn-lg" >
+                <i class="bi bi-arrow-clockwise"></i> Rebuild Content
+            </button>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="input-group">
+                <span class="input-group-text">Result</span>
+                <textarea id="resultArea" class="form-control" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    
+</div>

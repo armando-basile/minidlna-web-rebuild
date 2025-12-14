@@ -1,5 +1,8 @@
 <?php
 
+define("APP_TITLE", "MiniDLNA Web Rebuild");
+define("VERSION", "0.1.0");
+
 //get page template
 $htmlpage = file_get_contents("template/main.html");
 $login = file_get_contents("template/login.html");
@@ -50,6 +53,8 @@ if ((!isset($_SESSION["authenticated"])) || ($_SESSION["authenticated"] !== true
 
 # Page content
 $htmlpage = str_replace("<!-- PAGE-CONTENT -->", $page, $htmlpage);
+$htmlpage = str_replace("<!-- APP-TITLE -->", APP_TITLE, $htmlpage);
+$htmlpage = str_replace("<!-- VERSION -->", VERSION, $htmlpage);
 
 // send generated code to web browser
 echo $htmlpage;

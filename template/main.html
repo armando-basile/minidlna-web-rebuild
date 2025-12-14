@@ -2,12 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Monitor MiniDLNA</title>
+        <title>MiniDLNA Web Rebuild</title>
         <link href="css/bootstrap-darkly.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
     </head>
     <body>
 
-        <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-primary navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
             <img src="images/navicon.png" alt="Logo" width="32" class="d-inline-block align-text-top">
@@ -16,7 +17,20 @@
         </div>
         </nav>
 
-        <!-- PAGE-CONTENT -->
+        <div class="centerpage">
+
+            <!-- PAGE-CONTENT -->
+
+            <div class="container">			
+                <div style="height: 64px;"></div>        
+                <div class="container">
+                    <footer class="bs-footer footertext text-center" role="contentinfo">
+                        <p><!-- APP-TITLE --> - version <!-- VERSION --> </p>
+                    </footer>
+                </div>
+            </div>
+
+        </div>
 
         <script src="js/bootstrap.bundle.js"></script>
         <script src="js/minidlna-web-rebuild.js"></script>
