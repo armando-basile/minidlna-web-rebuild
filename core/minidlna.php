@@ -21,6 +21,11 @@ class minidlna {
         $returnVar = 0;
         exec($escapedCommand, $output, $returnVar);
         
+        // Log output and return code for debugging
+        error_log("Command executed: $escapedCommand");
+        error_log("Return code: $returnVar");
+        error_log("Output: " . implode("\n", $output));
+        
         if ($returnVar === 0) {
             return "Rebuild started with success. Output: " . implode("\n", $output);
         } else {
