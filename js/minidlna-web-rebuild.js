@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     statusInterval = setInterval(loadStatus, 6000);
     
     // Attach click event to rebuild button
-    document.querySelector('.btn-primary').addEventListener('click', rebuildContent);
+    document.getElementById('rebuildBtn').addEventListener('click', rebuildContent);
 });
 
 /**
@@ -53,8 +53,14 @@ function loadStatus() {
  * Rebuild MiniDLNA content
  */
 function rebuildContent() {
-    const button = document.querySelector('.btn-primary');
+    const button = document.getElementById('rebuildBtn');
     const icon = button.querySelector('i');
+    
+    if (!icon) {
+        console.error('Icon not found in button');
+        showResult('Error: Button configuration error', false);
+        return;
+    }
     
     // Disable button and add spinning animation
     button.disabled = true;
