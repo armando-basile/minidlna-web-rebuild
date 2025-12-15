@@ -6,10 +6,6 @@ Web application to manage MiniDLNA database rebuild and update contents
   ```
   # mkdir -p /var/www/webapps
   ```
-- Assign _www-data_ as owner for _/var/www/webapps_
-  ```
-  # chown www-data:www-data /var/www/webapps
-  ```
 - Clone git repo into _/var/www/webapps_
   ```
   # cd /var/www/webapps
@@ -17,6 +13,10 @@ Web application to manage MiniDLNA database rebuild and update contents
   # cd /var/www/webapps/minidlna-web-rebuild
   # git config --global --add safe.directory /var/www/webapps/minidlna-web-rebuild
   # git config core.fileMode false
+  ```
+- Assign _www-data_ as owner for _/var/www/webapps_
+  ```
+  # chown www-data:www-data /var/www/webapps
   ```
 - Copy _contrib/minidlna-web-rebuild.conf_ to _/etc/nginx/conf.d/minidlna-web-rebuild.conf_
   ```
@@ -26,8 +26,11 @@ Web application to manage MiniDLNA database rebuild and update contents
   ```
   # bash /var/www/webapps/minidlna-web-rebuild/contrib/set_permissions.sh
   ```
-
-- If nginx return permission error, set selinux
+- Allow www-data user to restart minidlna service
+  ```
+  # cp /var/www/webapps/minidlna-web-rebuild/contrib/minidlna-web-rebuild /etc/sudoers.d/minidlna-web-rebuild
+  ```
+- If nginx return permission error and selinux is enabled, set selinux
   ```
   # semanage port -a -t http_port_t -p tcp 8201
   ```
