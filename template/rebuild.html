@@ -37,24 +37,35 @@
 
     <div class="row text-center g-2 align-items-center">
 
-        <div class="col-12 col-sm-3 col-md-2">
-            <button type="button" id="rebuildBtn" class="btn btn-primary btn-lg" >
+        <div class="col-12 col-sm-4 col-md-4">
+            <button type="button" id="rebuildBtn" class="btn btn-primary btn-lg w-100" >
                 <i class="bi bi-arrow-clockwise"></i> Rebuild
             </button>
         </div>    
 
-        <div class="col-12 col-sm-3 col-md-2">
-            <button type="button" id="clearBtn" class="btn btn-primary btn-lg" onclick="clearResult()">
+        <div class="col-12 col-sm-4 col-md-4">
+            <button type="button" id="coverBtn" class="btn btn-primary btn-lg w-100" >
+                <i class="bi bi-image"></i> Get Cover
+            </button>
+        </div>
+
+        <div class="col-12 col-sm-4 col-md-4">
+            <button type="button" id="clearBtn" class="btn btn-primary btn-lg w-100" onclick="clearResult()">
                 <i class="bi bi-eraser"></i> Clear
             </button>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-8">
+    </div>
+
+    <div class="row text-center g-2 align-items-center">
+
+        <div class="col-12">
             <div class="input-group">
                 <span class="input-group-text">Result</span>
-                <textarea id="resultArea" class="form-control" readonly></textarea>
+                <textarea rows="10" id="resultArea" class="form-control" readonly></textarea>
             </div>
         </div>
+
     </div>
     
 </div>

@@ -29,7 +29,11 @@ class Actions {
                 case 'rebuild':
                     self::rebuild();
                     break;
-                    
+                
+                case 'cover':
+                    self::cover();
+                    break;
+
                 default:
                     self::sendError("Unknown action: $action");
             }
@@ -64,6 +68,19 @@ class Actions {
             
         } catch (Exception $e) {
             self::sendError("Error during rebuild: " . $e->getMessage());
+        }
+    }
+
+    private static function cover() {
+        try {
+            $result = minidlna::GenerateCover();
+            
+            self::sendSuccess([
+                'message' => $result
+            ]);
+            
+        } catch (Exception $e) {
+            self::sendError("Error during cover generation: " . $e->getMessage());
         }
     }
     

@@ -71,7 +71,29 @@ class minidlna {
     }
 
 
-
+    /**
+     * Perform cover generation
+     *
+     * @return void
+     */
+    public static function GenerateCover() {
+        // Command to start generation
+        $command = '/usr/bin/python3 /usr/local/bin/generate_thumbnail.py';
+        
+        // fix command
+        $escapedCommand = escapeshellcmd($command);
+        
+        // Exec and get output
+        $output = [];
+        $returnVar = 0;
+        exec($escapedCommand, $output, $returnVar);
+                
+        if ($returnVar === 0) {
+            return "Cover generation success. Output: " . implode("\n", $output);
+        } else {
+            return "Error during cover generation. Code: $returnVar. Output: " . implode("\n", $output);
+        }
+    }
 
 
 

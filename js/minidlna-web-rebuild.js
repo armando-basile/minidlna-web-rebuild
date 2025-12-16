@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Attach click event to rebuild button
     document.getElementById('rebuildBtn').addEventListener('click', rebuildContent);
+
+    // Attach click event to cover button
+    document.getElementById('coverBtn').addEventListener('click', updateCover);
 });
 
 /**
@@ -74,6 +77,53 @@ function rebuildContent() {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: 'action=rebuild'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showResult(data.data.message, true);
+            // Force immediate status reload after rebuild
+            setTimeout(loadStatus, 2000);
+            
+        } else {
+            showResult('Error: ' + data.error, false);
+        }
+    })
+    .catch(error => {
+        showResult('Network error: ' + error.message, false);
+    })
+    .finally(() => {
+        // Re-enable button
+        button.disabled = false;
+        icon.classList.remove('rotating');
+    });
+}
+
+/**
+ * Update cover
+ */
+function updateCover() {
+    const button = document.getElementById('coverBtn');
+    const icon = button.querySelector('i');
+    
+    if (!icon) {
+        console.error('Icon not found in button');
+        showResult('Error: Button configuration error', false);
+        return;
+    }
+    
+    // Disable button and add spinning animation
+    button.disabled = true;
+    icon.classList.add('rotating');
+    
+    showResult('Get cover...', true);
+    
+    fetch('actions.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'action=cover'
     })
     .then(response => response.json())
     .then(data => {
