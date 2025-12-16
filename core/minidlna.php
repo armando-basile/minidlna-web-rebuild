@@ -78,6 +78,10 @@ class minidlna {
      */
     public static function GenerateCover() {
         global $GenerateCoverLogfile;
+
+        escapeshellarg("rm -rf " . $GenerateCoverLogfile);
+        sleep(200);
+        
         // Command to start generation
         $scriptPath = '/usr/local/bin/generate_thumbnail.py';
         $command = '/usr/bin/python3 ' . escapeshellarg($scriptPath) . ' > ' . escapeshellarg($GenerateCoverLogfile) . ' 2>&1 &';
