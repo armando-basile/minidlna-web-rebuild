@@ -26,7 +26,6 @@ API_DELAY_SEC = 0.3
 TMDB_LANGUAGE = "it-IT"
 TMDB_REGION = "IT"
 
-
 # ==========================
 # UTILITY
 # ==========================
@@ -213,7 +212,7 @@ def process_video_file(filepath: str):
     """
     dirpath, filename = os.path.split(filepath)
     name_no_ext, _ = os.path.splitext(filename)
-    cover_path = os.path.join(dirpath, name_no_ext + ".jpg")
+    cover_path = os.path.join(dirpath, filename + ".jpg")
 
     if os.path.exists(cover_path):
         print(f"[SKIP] Cover already present: {cover_path}")
